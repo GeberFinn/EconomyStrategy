@@ -48,11 +48,11 @@ public class MapGenerate : MonoBehaviour {
         HexCell cell = cells[i] = Instantiate<HexCell>(cellPrefab);
         cell.transform.SetParent(transform, false);
         cell.transform.localPosition = position;
-
+        cell.coordinates = HexCoord.FromOffsetCoordinates(x, y);
         Text label = Instantiate<Text>(callLablePrefab);
         label.rectTransform.SetParent(gridCanvas.transform, false);
         label.rectTransform.anchoredPosition = new Vector2(position.x, position.z);
-        label.text = x.ToString() + "/" + y.ToString();
+        label.text = cell.coordinates.ToStringOnSeparateLines();
     }
 
     
